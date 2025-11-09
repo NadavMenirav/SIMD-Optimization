@@ -14,7 +14,7 @@ strlen_sse42:
 
     xorl %eax, %eax # zero the eax register
 
-    xorl %esi %esi #counter
+    xorl %esi, %esi #counter
 
 loop: # while we did not reach the end of the string
     pcmpistri xmm0, xmm1, 0x08 # first index that they are equal
