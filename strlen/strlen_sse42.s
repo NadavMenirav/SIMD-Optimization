@@ -17,7 +17,7 @@ strlen_sse42:
     xorl %esi, %esi #counter
 
 loop: # while we did not reach the end of the string
-    pcmpistri xmm0, xmm1, 0x08 # first index that they are equal
+    pcmpistri xmm0, xmm1, $0x08 # first index that they are equal
     add %ecx, %esi # add the number of matches to our counter
     cmpl 16, %ecx #if we did not reach the null terminator on our string
     je loop
