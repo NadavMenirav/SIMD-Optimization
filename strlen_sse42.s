@@ -10,9 +10,15 @@ strlen_sse42:
 
     xorl %eax, %eax # zero the eax register
 
+    xorl %esi %esi #counter
+
 loop: # while we did not reach the end of the string
     pcmpistri xmm0, xmm1, 0x08 # first index that they are equal
-    cmpl 16, %ecx
+    add %ecx, %esi # add the number of matches to our counter
+    cmpl 16, %ecx #if we did not reach the null terminator on our string
     je loop
     jump outside
+
+outside:
+    movl %esi, %eax # our return value, number of chars in the string
 
