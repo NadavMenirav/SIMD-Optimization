@@ -19,7 +19,7 @@ loop: # while we did not reach the end of the string
     movdqu (%rdi), %xmm1 # the first 16 bytes of our string
     pcmpistri  $0x08, %xmm0, %xmm1 # first index that they are equal
 
-    add %ecx, %esi # add the number of matches to our counter
+    addl %ecx, %esi # add the number of matches to our counter
     cmpl $16, %ecx #if we did not reach the null terminator on our string
     je add # we need to move te string 16 bytes ahead
 
