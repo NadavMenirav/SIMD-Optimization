@@ -31,4 +31,5 @@ add:
 
 outside:
     movl %esi, %eax # our return value, number of chars in the string
+    ret
 
