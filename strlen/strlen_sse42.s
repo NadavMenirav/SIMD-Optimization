@@ -16,7 +16,7 @@ strlen_sse42:
     xorl %esi, %esi #counter
 
 loop: # while we did not reach the end of the string
-    movdqu (%rdi), %xmm1 # the first 16 bytes of our string
+    movdqu (%rdi), %xmm1 # takes 16 bytes of our string
     pcmpistri  $0x08, %xmm0, %xmm1 # first index that they are equal
 
     addl %ecx, %esi # add the number of matches to our counter
@@ -31,5 +31,6 @@ add:
 
 outside:
     movl %esi, %eax # our return value, number of chars in the string
+    pop %rcx
     ret
 
