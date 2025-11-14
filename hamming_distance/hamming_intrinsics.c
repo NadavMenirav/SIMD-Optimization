@@ -62,10 +62,13 @@ size_t local_strlen(const char *s) {
     return -1;
 }
 
+// Calculates the minimum value between two integers
 int local_min(const int a, const int b) {
     return a < b ? a : b;
 }
 
-int abs(int a) {
+
+// Calculates the absolute value of an integer
+int abs(const int a) {
     return a < 0 ? -a : a;
 }
