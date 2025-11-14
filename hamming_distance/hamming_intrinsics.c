@@ -4,6 +4,14 @@
 
 #define MAX_STR 256
 
+int local_strlen(const char *s);
+
+/*
+ * This function will calculate the hamming distance of two strings using C intrinsics.
+ * We will store the string in two chunks of 128bit xmm registers and compare the two registers by their bytes.
+ * The result of the matches will be stored in a xmm register as well, and then we will use the "sad" function to sum
+ * all the matches.
+ */
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
 
 }
