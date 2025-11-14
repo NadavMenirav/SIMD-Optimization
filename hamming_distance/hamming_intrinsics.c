@@ -4,7 +4,7 @@
 
 #define MAX_STR 256
 
-int local_strlen(const char *s);
+size_t local_strlen(const char *s);
 
 /*
  * This function will calculate the hamming distance of two strings using C intrinsics.
@@ -14,4 +14,12 @@ int local_strlen(const char *s);
  */
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
 
+}
+
+size_t local_strlen(const char *s) {
+    for (int i = 0; i < MAX_STR; i++) {
+        if (s[i] == '\0') {
+            return i;
+        }
+    }
 }
