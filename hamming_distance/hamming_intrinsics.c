@@ -27,6 +27,8 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
 
     const __m128i zeroString = _mm_setzero_si128();
 
+    const __m128i sumOfDiff = _mm_sad_epu8(diff, zeroString);
+
 
 
 }
