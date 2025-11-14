@@ -20,14 +20,15 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     // Calculating the lengths of the strings
     const int len1 = local_strlen(str1);
     const int len2 = local_strlen(str2);
+
     const int minLen = local_min(len1, len2);
+
+    // We need minLen / 16 iterations rounded up.
     const int numberOfIterations = minLen / 16 + (minLen % 16 != 0);
 
-    size_t currentLen = 0;
+    int currentLen = 0;
 
     // Storing the string in a char* so that we will be able to +=16 it.
-
-
     const char* pstr1 = str1;
     const char* pstr2 = str2;
 
@@ -36,6 +37,11 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     const __m128i secondString = _mm_loadu_si128((__m128i *)pstr2);
 
     for (int i = 0; i < numberOfIterations; i++) {
+
+        // Moving the strings up to the next 16 bytes.
+        pstr1 += i * 16;
+        pstr2 += i * 16;
+
 
     }
     /*
