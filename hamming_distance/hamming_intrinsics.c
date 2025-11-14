@@ -17,6 +17,8 @@ int local_abs(int a);
  */
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
 
+    int result = 0;
+
     // Calculating the lengths of the strings
     const int len1 = local_strlen(str1);
     const int len2 = local_strlen(str2);
@@ -61,6 +63,7 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
         const int numberOfMatches = _mm_extract_epi32(sumOfMatches, 0) + _mm_extract_epi32(sumOfMatches, 4);
 
         const int numberOfDiff = 16 - numberOfMatches;
+        result += numberOfDiff;
 
     }
 
