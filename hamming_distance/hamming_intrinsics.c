@@ -7,6 +7,7 @@
 size_t local_strlen(const char *s);
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]);
 int loacl_min(int a, int b);
+int abs(int a);
 
 /*
  * This function will calculate the hamming distance of two strings using C intrinsics.
@@ -63,4 +64,8 @@ size_t local_strlen(const char *s) {
 
 int local_min(const int a, const int b) {
     return a < b ? a : b;
+}
+
+int abs(int a) {
+    return a < 0 ? -a : a;
 }
