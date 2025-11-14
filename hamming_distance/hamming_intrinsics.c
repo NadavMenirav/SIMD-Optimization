@@ -6,6 +6,7 @@
 
 size_t local_strlen(const char *s);
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]);
+int loacl_min(int a, int b);
 
 /*
  * This function will calculate the hamming distance of two strings using C intrinsics.
@@ -20,6 +21,8 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     const size_t len2 = local_strlen(str2);
 
     // Storing the string in a char* so that we will be able to +=16 it.
+
+
     const char* pstr1 = str1;
     const char* pstr2 = str2;
 
@@ -44,8 +47,9 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     const __m128i sumOfMatches= _mm_sad_epu8(matches, zeroString);
 
     // The number of natches is calculated by taking the lower 16 bits  sumOfMatches and the 16 bits in the second half
-        const int numberOfMatches = _mm_extract_epi32(sumOfMatches, 0) + _mm_extract_epi32(sumOfMatches, 4);
+    const int numberOfMatches = _mm_extract_epi32(sumOfMatches, 0) + _mm_extract_epi32(sumOfMatches, 4);
 
+    const int numberOfDiff = 16 - numberOfMatches;
 }
 
 size_t local_strlen(const char *s) {
@@ -55,4 +59,8 @@ size_t local_strlen(const char *s) {
         }
     }
     return -1;
+}
+
+int local_min(const int a, const int b) {
+    return a < b ? a : b;
 }
