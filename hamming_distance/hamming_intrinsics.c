@@ -23,7 +23,9 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     const __m128i firstString = _mm_loadu_si128((__m128i *)pstr1);
     const __m128i secondString = _mm_loadu_si128((__m128i *)pstr2);
 
-    __m128i diff = _mm_cmpeq_epi8(secondString, firstString);
+    const __m128i diff = _mm_cmpeq_epi8(secondString, firstString);
+
+    const __m128i zeroString = _mm_setzero_si128();
 
 
 
