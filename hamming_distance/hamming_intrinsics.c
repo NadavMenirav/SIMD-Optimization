@@ -32,7 +32,7 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
      * The function returns a xmm register that every bit in it represents whether the corresponding chars in
      * the array are equal
      */
-    const __m128i diff = _mm_cmpeq_epi8(secondString, firstString);
+    const __m128i matches = _mm_cmpeq_epi8(secondString, firstString);
 
     // The function sets the register 0
     const __m128i zeroString = _mm_setzero_si128();
@@ -41,9 +41,10 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
      * The function splits the register in half and sums over it. we use the zero string because it first subtracts it
      * from our string
      */
-    const __m128i sumOfDiff = _mm_sad_epu8(diff, zeroString);
+    const __m128i sumOfMatches= _mm_sad_epu8(matches, zeroString);
 
-
+    // The number of natches is calculated by taking the lower 16 bits  sumOfMatches and the 16 bits in the second half
+        const int numberOfMatches = _mm_extract_epi32(sumOfMatches, 0) + _mm_extract_epi32(sumOfMatches, 4);
 
 }
 
