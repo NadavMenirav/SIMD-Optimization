@@ -22,4 +22,5 @@ size_t local_strlen(const char *s) {
             return i;
         }
     }
+    return -1;
 }
