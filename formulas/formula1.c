@@ -18,7 +18,11 @@ float formula1(float *x, unsigned int length) {
     for (int i = 0; i < length / FLOAT_SIZE; i++, array += NUMBER_OF_FLOATS_IN_REGISTER) {
 
         // We extract the current 4 floats we are working with
-        __m128 currentFourFloats = _mm_loadu_ps(array);
+        const __m128 currentFourFloats = _mm_loadu_ps(array);
+
+        // Compute the square roots
+        __m128 squareRootFourFloats = _mm_sqrt_ps(currentFourFloats);
+
 
 
     }
