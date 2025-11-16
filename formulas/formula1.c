@@ -10,6 +10,7 @@
 
 float formula1(float *x, unsigned int length);
 float sumFloats(__m128 a);
+float mulFloats(__m128 a);
 
 // This function will calculate the difficult formula fast, using intrinsics of course.
 float formula1(float *x, unsigned int length) {
@@ -39,6 +40,8 @@ float formula1(float *x, unsigned int length) {
 
 
 
+
+
     }
 }
 
@@ -48,4 +51,27 @@ float sumFloats(const __m128 a) {
     const __m128    resultRegister = _mm_hadd_ps(middleStep, middleStep);
     return _mm_cvtss_f32(resultRegister);
 
+}
+
+// This function receives a xmm register containing four floats and will return the product of them.
+float mulFloats(const __m128 a) {
+
+    // The result
+    __m128 product = a;
+
+    /*
+     * We are doing the product as such: We are using the shuffle function in order to multiply each value in the
+     * register in all the other values.
+     */
+    for (int i = 1; i < NUMBER_OF_FLOATS_IN_REGISTER; i++) {
+        /*
+         * In each iteration we are progressing the values one index ahead, and the last value progress to the first
+         * (hence the modulu 4)
+         */
+        const __m128 shuffled = _mm_shuffle_ps(a, a, _MM_SHUFFLE((3 + i) % 4, (2 + i) % 4, (1 + i) % 4, i % 4));
+        product = _mm_mul_ps(product, shuffled);
+    }
+
+    // Each of the entries in "product" will contain the result, so we just picked and arbitrary one
+    return _mm_cvtss_f32(product);
 }
