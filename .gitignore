@@ -9,3 +9,5 @@ strlen/strlen_sse42.h
 strlen/Makefile
 hamming_distance/test_hamming.c
 hamming_distance/Makefile
+formulas/Makefile
+formulas/main.c
