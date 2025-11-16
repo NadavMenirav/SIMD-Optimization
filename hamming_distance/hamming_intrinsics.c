@@ -19,10 +19,6 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
 
     int result = 0;
 
-    // Calculating the lengths of the strings
-    const int len1 = local_strlen(str1);
-    const int len2 = local_strlen(str2);
-
     // We need 256 / 16 = 16 iterations
     const int numberOfIterations = 16;
 
@@ -33,8 +29,8 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     for (int i = 0; i < numberOfIterations; i++) {
 
         // Moving the strings up to the next 16 bytes.
-        pstr1 += i * 16;
-        pstr2 += i * 16;
+        pstr1 += 16;
+        pstr2 += 16;
 
         // Storing the strings in the xmm registers
         const __m128i firstString = _mm_loadu_si128((__m128i *)pstr1);
