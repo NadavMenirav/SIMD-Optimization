@@ -55,10 +55,6 @@ float sumFloats(const __m128 a) {
 
 // This function receives a xmm register containing four floats and will return the product of them.
 float mulFloats(const __m128 a) {
-
-    // The result
-    __m128 product = a;
-
     /*
      * The register 'a' is as such: [float_1, float_2, float_3, float_4]
      * We shuffle 'a' to get:       [float 2, float 1, float 4, float 3]
