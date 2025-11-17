@@ -68,6 +68,7 @@ float mulFloats(const __m128 a) {
      *
      */
 
-    __m128 secondStep = _mm_shuffle_ps(a, a, _MM_SHUFFLE(2, 3, 0, 1));
+    const __m128 secondStep = _mm_shuffle_ps(a, a, _MM_SHUFFLE(2, 3, 0, 1));
     __m128 thirdStep = _mm_mul_ps(a, secondStep);
+    __m128 fourthStep = _mm_shuffle_ps(thirdStep, thirdStep, _MM_SHUFFLE(3, 0, 1, 2));
 }
