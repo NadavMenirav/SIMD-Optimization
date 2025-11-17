@@ -15,6 +15,7 @@ float mulFloats(__m128 a);
 // This function will calculate the difficult formula fast, using intrinsics of course.
 float formula1(float *x, unsigned int length) {
     float sumOfSquareRoots = 0;
+    float productOfSquaredPlusOne = 0;
     const float *array = x;
 
     // We store the array in chunks of 4, each chunk in a xmm register.
@@ -36,13 +37,12 @@ float formula1(float *x, unsigned int length) {
         const __m128 onesRegister = _mm_set1_ps(1);
 
         // Adding the ones register to the squared floats
-        __m128 squaredPlusOne = _mm_add_ps(fourFloatsSquared, onesRegister);
+        const __m128 squaredPlusOne = _mm_add_ps(fourFloatsSquared, onesRegister);
 
-
-
-
-
+        productOfSquaredPlusOne *= mulFloats(squaredPlusOne);
     }
+
+    return sqrtf(1.0f + (cbrtf(sumOfSquareRoots)) / (productOfSquaredPlusOne));
 }
 
 // This function receives a xmm register containing four floats and will return the sum of them.
