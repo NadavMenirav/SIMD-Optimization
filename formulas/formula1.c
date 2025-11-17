@@ -28,7 +28,7 @@ float formula1(float *x, unsigned int length) {
         __m128 squareRootFourFloats = _mm_sqrt_ps(currentFourFloats);
 
         // Adding the sum of square roots of current floats to the overall sum
-        sumOfSquareRoots += sumFloats(currentFourFloats);
+        sumOfSquareRoots += sumFloats(squareRootFourFloats);
 
         // Compute the values squared
         const __m128 fourFloatsSquared = _mm_mul_ps(currentFourFloats, currentFourFloats);
