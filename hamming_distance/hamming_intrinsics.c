@@ -4,7 +4,6 @@
 
 #define MAX_STR 256
 
-int local_strlen(const char *s);
 int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]);
 int local_min(int a, int b);
 int local_abs(int a);
@@ -64,15 +63,6 @@ int hamming_dist(char str1[MAX_STR], char str2[MAX_STR]) {
     }
     return result;
 
-}
-
-int local_strlen(const char *s) {
-    for (int i = 0; i < MAX_STR; i++) {
-        if (s[i] == '\0') {
-            return i;
-        }
-    }
-    return -1;
 }
 
 // Calculates the minimum value between two integers
